@@ -26,24 +26,24 @@ int main(){
         p3p4_Score += (temp1 * temp2);
 
         // Check for win
-        if(!p1p2_RoundWin && p1p2_Score > health){
+        if(!p1p2_RoundWin && p1p2_Score >= health){
             p1p2_RoundWin = i+1;
         }
 
-        if(!p3p4_RoundWin && p3p4_Score > health){
+        if(!p3p4_RoundWin && p3p4_Score >= health){
             p3p4_RoundWin = i+1;
         }
 
     }
 
-    if(!p1p2_RoundWin && p1p2_RoundWin > p3p4_RoundWin){
+    if(p1p2_RoundWin && p1p2_RoundWin < p3p4_RoundWin){
         cout << "Team 1 wins at round " << p1p2_RoundWin << "!";
-    } else if(!p3p4_RoundWin && p3p4_RoundWin > p1p2_RoundWin){
+    } else if(p3p4_RoundWin && p3p4_RoundWin < p1p2_RoundWin){
         cout << "Team 2 wins at round " << p3p4_RoundWin << "!";
-    } else if(!p1p2_RoundWin && p1p2_RoundWin == p3p4_RoundWin){
+    } else if(p1p2_RoundWin && p1p2_RoundWin == p3p4_RoundWin){
         cout << "It's a tie at round " << p1p2_RoundWin << "!";
     } else {
-        cout << "Oh no!"
+        cout << "Oh no!";
     }
-    
+
 }
