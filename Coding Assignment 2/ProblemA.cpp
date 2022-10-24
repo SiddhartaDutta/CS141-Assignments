@@ -7,7 +7,7 @@ using namespace std;
 int main(){
 
     int n, count = 0, temp;
-    vector<int> a;
+    deque<int> a;
 
     cin >> n;
 
@@ -31,8 +31,8 @@ int main(){
         cout << "addition: " << temp*2 << endl;
 
         // erase used elements
-        a.erase(a.begin());
-        a.erase(a.begin());
+        a.pop_front();
+        a.pop_front();
 
         // push new element
         a.push_back(temp);
