@@ -20,15 +20,15 @@ int main(){
     while(a.size() > 1){
         // sort
         sort(a.begin(), a.end());
-        for(int i = 0; i < a.size(); i++){
-            cout << " " << a.at(i);
-        }
-        cout << endl;
+        // for(int i = 0; i < a.size(); i++){
+        //     cout << " " << a.at(i);
+        // }
+        // cout << endl;
 
         // increment count
         temp = a.at(0) + a.at(1);
         count += temp * 2;
-        cout << "addition: " << temp*2 << endl;
+        //cout << "addition: " << temp*2 << endl;
 
         // erase used elements
         a.pop_front();
@@ -37,7 +37,7 @@ int main(){
         // push new element
         a.push_back(temp);
 
-        cout << "size: " << a.size() << endl;
+        //cout << "size: " << a.size() << endl;
     }
     
     cout << count;
