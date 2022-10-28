@@ -1,45 +1,96 @@
 #include <bits/stdc++.h>
-//#include <iostream>
-//#include <vector>
     
 using namespace std;
 
-int main(){
+// Merge arrays
+void merge(int *arr[], int start, int half, int end) {
+  
+  // Create left and right arrays
+  int size1 = half - start + 1;
+  int size2 = end - half;
 
-    int n, count = 0, temp;
-    deque<int> a;
+  int *L[size1], *R[size2];
 
-    cin >> n;
+  for (int i = 0; i < size1; i++){
+    L[i] = arr[start + i];
+  }
+  for (int i = 0; i < size2; i++){
+    R[i] = arr[half + 1 + i];
+  }
 
-    for(int i = 0; i < n; i++){
-        cin >> temp;
-        a.push_back(temp);
-        //cout << "read: " << i << endl;
+  // Record current index of arrays
+  int i, j, k;
+  i = 0;
+  j = 0;
+  k = start;
+
+  while (i < size1 && j < size2) {
+    if (L[i] <= R[j]) {
+      arr[k] = L[i];
+      i++;
+    } else {
+      arr[k] = R[j];
+      j++;
     }
+    k++;
+  }
 
-    while(a.size() > 1){
-        // sort
-        sort(a.begin(), a.end());
-        // for(int i = 0; i < a.size(); i++){
-        //     cout << " " << a.at(i);
-        // }
-        // cout << endl;
+  while (i < size1) {
+    arr[k] = L[i];
+    i++;
+    k++;
+  }
 
-        // increment count
-        temp = a.at(0) + a.at(1);
-        count += temp * 2;
-        //cout << "addition: " << temp*2 << endl;
+  while (j < size2) {
+    arr[k] = R[j];
+    j++;
+    k++;
+  }
+}
 
-        // erase used elements
-        a.pop_front();
-        a.pop_front();
-
-        // push new element
-        a.push_back(temp);
-
-        //cout << "size: " << a.size() << endl;
-    }
+void mergeSort(int *arr[], int l, int r, int& candies) {
+  if (l < r) {
     
-    cout << count;
+    // divide array
+    int m = l + (r - l) / 2;
 
+    mergeSort(arr, l, m, candies);
+    mergeSort(arr, m + 1, r, candies);
+
+    // merge
+    merge(arr, l, m, r);
+
+    // get candies
+    int temp = (sizeof(arr) / sizeof(int)) - 1;
+    candies += arr[temp] - arr[0];
+
+  }
+}
+
+// Driver program
+// int main() {
+//   int arr[] = {6, 5, 12, 10, 9, 1};
+//   int size = sizeof(arr) / sizeof(arr[0]);
+
+//   mergeSort(arr, 0, size - 1);
+
+//   cout << "Sorted array: \n";
+//   printArray(arr, size);
+//   return 0;
+// }
+
+int main(){
+    int scores, temp = 0;
+
+    cin >> scores;
+
+    int *arr[scores];
+
+    for(int i = 0; i < scores; i++){
+        cin >> arr[i];
+    }
+
+    mergeSort(arr, 0, scores - 1, temp);
+
+    cout << temp;
 }

@@ -1,42 +1,30 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 int main(){
-    
-    int W, n, temp;
+    int depts = 0, temp;
+    vector<int> deptMembers;
 
-    cin >> W;
-    cin >> n;
+    // Get dept count
+    cin >> depts;
 
-    vector<int> Wi, Vi;
-
-    for(int i = 0; i < n; i++){
+    // Get faculty count per dept
+    for(int i = 0; i < depts; i++){
         cin >> temp;
-        Wi.push_back(temp);
-
-        cin >> temp;
-        Vi.push_back(temp);
+        deptMembers.push_back(temp);
     }
 
-    vector<vector<int>> knapsack(n + 1, vector<int>(W + 1));
+    // Order depts by lowest->greatest
+    sort(begin(deptMembers), end(deptMembers));
 
-    for(int i = 0; i <= n; i++){
-        for(int w = 0; w <= W; w++){
+    // Ceiling half only the first ceiling half of depts
+    depts = int(depts/2) + 1;
+    temp = 0;
+    for(int i = 0; i < depts; i++){
+        temp += int(deptMembers[i]/2) + 1;
+    } 
 
-            if(i == 0 || w == 0){
-                knapsack[i][w] = 0;
-            } else if(Wi[i - 1] <= w){
-                knapsack[i][w] = max(Vi[i - 1] + knapsack[i - 1][w - Wi[i-1]], knapsack[i - 1][w]);
-            } else {
-                knapsack[i][w] = knapsack[i - 1][w];
-            }
-
-        }
-    }
-
-    cout << knapsack[n][W];
-    
+    // Return total min required votes
+    cout << temp << endl;
 }
