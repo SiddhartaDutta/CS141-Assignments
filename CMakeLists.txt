@@ -2,5 +2,5 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 SET(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(main
-    Coding\ Assignment\ 2/ProblemB.cpp
+    Coding\ Assignment\ 3/ProblemA.cpp
 )
